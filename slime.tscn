@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://dvadt4tryfqr8"]
+
+[ext_resource type="Texture2D" uid="uid://cuexemnaqsxjl" path="res://tiles/enemies/slime/slime_idle_anim_f0.png" id="1_8w6w5"]
+[ext_resource type="Script" uid="uid://c0tfnwevo7e40" path="res://scripts/Slime.gd" id="1_lrvan"]
+[ext_resource type="Texture2D" uid="uid://pccv57qg0obr" path="res://tiles/enemies/slime/slime_idle_anim_f1.png" id="2_lrvan"]
+[ext_resource type="Texture2D" uid="uid://bc5fp1mn6k5g1" path="res://tiles/enemies/slime/slime_idle_anim_f2.png" id="3_0gjuw"]
+[ext_resource type="Texture2D" uid="uid://gsedap16wyjk" path="res://tiles/enemies/slime/slime_idle_anim_f3.png" id="4_6ggc5"]
+[ext_resource type="Texture2D" uid="uid://bx45yaguba884" path="res://tiles/enemies/slime/slime_idle_anim_f4.png" id="5_b48k4"]
+[ext_resource type="Texture2D" uid="uid://5ema3wxbn2n5" path="res://tiles/enemies/slime/slime_idle_anim_f5.png" id="6_31ce7"]
+[ext_resource type="Texture2D" uid="uid://ck1f2vfo57i3q" path="res://tiles/enemies/slime/slime_run_anim_f0.png" id="7_nowxr"]
+[ext_resource type="Texture2D" uid="uid://b1kvbrj6fr2q5" path="res://tiles/enemies/slime/slime_run_anim_f1.png" id="8_yfmhs"]
+[ext_resource type="Texture2D" uid="uid://2b1cxx8nl1qa" path="res://tiles/enemies/slime/slime_run_anim_f3.png" id="9_hagqt"]
+[ext_resource type="Texture2D" uid="uid://cb3wj7ruxqogh" path="res://tiles/enemies/slime/slime_run_anim_f2.png" id="10_pwq85"]
+[ext_resource type="Texture2D" uid="uid://cbnth1dky533u" path="res://tiles/enemies/slime/slime_run_anim_f4.png" id="11_uekmf"]
+[ext_resource type="Texture2D" uid="uid://fqjqbaah3im4" path="res://tiles/enemies/slime/slime_run_anim_f5.png" id="12_o2fkb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_itray"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8w6w5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_lrvan")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0gjuw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6ggc5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_b48k4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_31ce7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_nowxr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_yfmhs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_hagqt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_pwq85")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_uekmf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_o2fkb")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8w6w5"]
+radius = 6.0
+height = 12.0
+
+[node name="Slime" type="CharacterBody2D" unique_id=1513644061]
+script = ExtResource("1_lrvan")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1974653318]
+sprite_frames = SubResource("SpriteFrames_itray")
+animation = &"idle"
+frame = 1
+frame_progress = 0.8239061
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=504315056]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_8w6w5")
