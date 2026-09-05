@@ -74,7 +74,7 @@ script = ExtResource("1_lrvan")
 sprite_frames = SubResource("SpriteFrames_itray")
 animation = &"idle"
 frame = 1
-frame_progress = 0.8239061
+frame_progress = 0.6804048
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=504315056]
 position = Vector2(0, 1)
