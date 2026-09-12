@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 
 
 func _on_slime_timer_timeout() -> void:
-	pass # Replace with function body.
+	spawn_slime()
 
 func spawn_slime() -> void:
 	if slime_scene == null:
