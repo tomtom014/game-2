@@ -1,4 +1,4 @@
-[gd_scene load_steps=0 format=3 uid="uid://dvadt4tryfqr8"]
+[gd_scene format=3 uid="uid://dvadt4tryfqr8"]
 
 [ext_resource type="Texture2D" uid="uid://cuexemnaqsxjl" path="res://tiles/enemies/slime/slime_idle_anim_f0.png" id="1_8w6w5"]
 [ext_resource type="Script" uid="uid://c0tfnwevo7e40" path="res://scripts/Slime.gd" id="1_lrvan"]
