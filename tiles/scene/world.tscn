@@ -440,10 +440,11 @@ position = Vector2(454, 632)
 wait_time = 5.0
 autostart = true
 
-[node name="FakeWall" type="TileMapLayer" parent="." unique_id=1505034989]
+[node name="FakeWall" type="TileMapLayer" parent="." unique_id=1505034989 node_paths=PackedStringArray("player")]
 tile_map_data = PackedByteArray("AAArAAYAAAAIAAQAAAAsAAYAAAAIAAQAAAAtAAYAAAAIAAQAAAAuAAYAAAAIAAQAAAAuAAUAAAAIAAQAAAAuAAQAAAAIAAQAAAAtAAQAAAAIAAQAAAAsAAQAAAAIAAQAAAArAAQAAAAIAAQAAAArAAUAAAAIAAQAAAAsAAUAAAAIAAQAAAAtAAUAAAAIAAQAAAA=")
 tile_set = SubResource("TileSet_na5tu")
 script = ExtResource("8_7ghph")
+player = NodePath("../ysort/Player")
 
 [node name="Area2D" type="Area2D" parent="FakeWall" unique_id=1817913694]
 scale = Vector2(2, 2)
