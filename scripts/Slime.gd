@@ -8,7 +8,9 @@ extends CharacterBody2D
 func _ready():
 	if animated_sprite == null:
 		animated_sprite = get_node_or_null("AnimatedSprite2D") as AnimatedSprite2D
-
+		
+func death() -> void:
+	queue_free()
 
 func _physics_process(delta):
 	var direction = get_direction_to_player()

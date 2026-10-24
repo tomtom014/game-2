@@ -67,7 +67,7 @@ animations = [{
 radius = 6.0
 height = 12.0
 
-[node name="Slime" type="CharacterBody2D" unique_id=1513644061]
+[node name="Slime" type="CharacterBody2D" unique_id=1513644061 groups=["enemies"]]
 script = ExtResource("1_lrvan")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1974653318]

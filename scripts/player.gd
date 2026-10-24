@@ -26,6 +26,13 @@ func _ready() -> void:
 	if sprite and not sprite.animation_finished.is_connected(_on_animation_finished):
 		sprite.animation_finished.connect(_on_animation_finished)
 
+func _attack_enemy() -> void:
+	for direction in [Vector2.UP,Vector2.DOWN,Vector2.RIGHT,Vector2.LEFT]:
+		var collision:= move_and_collide(direction,true)
+		if collision:
+			var enemy = collision.get_collider()
+			if enemy.is_in_group("enemies"):
+				enemy.death()
 
 func _physics_process(_delta: float) -> void:
 	if is_dead:
@@ -36,6 +43,7 @@ func _physics_process(_delta: float) -> void:
 	if is_attacking:
 		velocity = Vector2.ZERO
 		move_and_slide()
+		_attack_enemy()
 		return
 
 	character_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
