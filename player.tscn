@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dranw71vox1tm" path="res://assets/images/player/Player/Player.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://0fl6bgmtm0p2" path="res://scripts/player.gd" id="2_player"]
+[ext_resource type="Texture2D" uid="uid://bnqeem03dhdjt" path="res://tiles/tiles/GrassTileset/Props.png" id="3_i3pqv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4flbx"]
 atlas = ExtResource("1_4flbx")
@@ -424,6 +425,10 @@ animations = [{
 radius = 5.0
 height = 10.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ef02"]
+atlas = ExtResource("3_i3pqv")
+region = Rect2(97.43435, 78.90396, 11.566299, 12.722931)
+
 [node name="Player" type="CharacterBody2D" unique_id=826415110 groups=["player"]]
 position = Vector2(1, 0)
 motion_mode = 1
@@ -445,3 +450,21 @@ zoom = Vector2(2.5, 2.5)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=631759415]
 position = Vector2(-1, 7)
 shape = SubResource("CapsuleShape2D_4flbx")
+
+[node name="GUI" type="CanvasLayer" parent="." unique_id=872803934]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI" unique_id=872425252]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 128.0
+offset_bottom = 60.0
+
+[node name="KeyIcon" type="TextureRect" parent="GUI/HBoxContainer" unique_id=1134626829]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("AtlasTexture_5ef02")
+
+[node name="KeyNumber" type="Label" parent="GUI/HBoxContainer" unique_id=822782729]
+layout_mode = 2
+text = "Key x 00"
