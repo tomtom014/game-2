@@ -18,6 +18,7 @@ var character_direction := Vector2.ZERO
 var last_direction := Vector2.DOWN
 var is_attacking := false
 var is_dead := false
+var keys := 0
 
 
 func _ready() -> void:
@@ -25,6 +26,8 @@ func _ready() -> void:
 		sprite = get_node_or_null("sprite") as AnimatedSprite2D
 	if sprite and not sprite.animation_finished.is_connected(_on_animation_finished):
 		sprite.animation_finished.connect(_on_animation_finished)
+		
+	$GUI/HBoxContainer/KeyNumber.text = "Key x %02d" % keys
 
 func _attack_enemy() -> void:
 	for direction in [Vector2.UP,Vector2.DOWN,Vector2.RIGHT,Vector2.LEFT]:
@@ -101,3 +104,7 @@ func _on_animation_finished() -> void:
 	if sprite and sprite.animation in [anim_attack_up, anim_attack_down, anim_attack_right]:
 		is_attacking = false
 		update_animation(false)
+
+func add_key() -> void:
+	keys += 1
+	$GUI/HBoxContainer/KeyNumber.text = "Key x %02d" % keys
