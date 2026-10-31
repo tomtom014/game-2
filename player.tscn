@@ -430,6 +430,7 @@ atlas = ExtResource("3_i3pqv")
 region = Rect2(97.43435, 78.90396, 11.566299, 12.722931)
 
 [node name="Player" type="CharacterBody2D" unique_id=826415110 groups=["player"]]
+z_index = 1
 position = Vector2(1, 0)
 motion_mode = 1
 script = ExtResource("2_player")

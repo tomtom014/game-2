@@ -14,6 +14,7 @@ var is_open := false
 
 func _ready() -> void:
 	$Sprite2D.texture = closed_texture
+	$Sprite2D.scale = Vector2(1, 1)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -28,6 +29,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				continue
 			is_open = true
 			$Sprite2D.texture = opened_texture
+			$Sprite2D.scale = Vector2(1, 1)
 			body.add_key()
 			get_viewport().set_input_as_handled()
 			break
@@ -35,26 +37,33 @@ func _unhandled_input(event: InputEvent) -> void:
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_enpov"]
 atlas = ExtResource("1_enpov")
-region = Rect2(64.99046, 1.2588568, 14.219879, 12.903228)
+region = Rect2(96.85353, 1.2588568, 14.483215, 12.903228)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pyuuc"]
 atlas = ExtResource("1_enpov")
-region = Rect2(64.72713, 22.852015, 14.219879, 23.17314)
+region = Rect2(96.85353, 22.852015, 14.219879, 23.17314)
+
+[sub_resource type="Gradient" id="Gradient_y6wh5"]
+offsets = PackedFloat32Array(0, 0.40932643, 0.93264246, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.40932643, 0.40932643, 0.40932643, 1, 0.582809, 0, 0.09271944, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2tvov"]
+gradient = SubResource("Gradient_y6wh5")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7kmj"]
 size = Vector2(16, 16)
 
-[node name="ChestBlue" type="Area2D" unique_id=1047676621]
+[node name="ChestRed" type="Area2D" unique_id=1047676621]
+z_as_relative = false
 script = SubResource("GDScript_enpov")
 closed_texture = SubResource("AtlasTexture_enpov")
 opened_texture = SubResource("AtlasTexture_pyuuc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1386945699]
-position = Vector2(0, 0.25)
-scale = Vector2(1, 0.96153843)
-texture = ExtResource("1_enpov")
-region_enabled = true
-region_rect = Rect2(64.85584, 0.5299554, 14.219879, 13.9565525)
+position = Vector2(0.5, 0)
+scale = Vector2(0.265625, 0.25)
+texture = SubResource("GradientTexture2D_2tvov")
+region_rect = Rect2(97.11687, 0.5299554, 14.219879, 13.9565525)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1978634448]
 shape = SubResource("RectangleShape2D_j7kmj")
