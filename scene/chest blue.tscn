@@ -42,7 +42,7 @@ atlas = ExtResource("1_enpov")
 region = Rect2(64.72713, 22.852015, 14.219879, 23.17314)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7kmj"]
-size = Vector2(16, 16)
+size = Vector2(32, 32)
 
 [node name="ChestBlue" type="Area2D" unique_id=1047676621]
 script = SubResource("GDScript_enpov")
@@ -52,9 +52,7 @@ opened_texture = SubResource("AtlasTexture_pyuuc")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1386945699]
 position = Vector2(0, 0.25)
 scale = Vector2(1, 0.96153843)
-texture = ExtResource("1_enpov")
-region_enabled = true
-region_rect = Rect2(64.85584, 0.5299554, 14.219879, 13.9565525)
+texture = SubResource("AtlasTexture_enpov")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1978634448]
 shape = SubResource("RectangleShape2D_j7kmj")
