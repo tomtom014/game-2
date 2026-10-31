@@ -44,7 +44,7 @@ region = Rect2(64.72713, 22.852015, 14.219879, 23.17314)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7kmj"]
 size = Vector2(16, 16)
 
-[node name="ChestBlue" type="Node2D" unique_id=684120891]
+[node name="ChestBlue" type="Area2D" unique_id=1047676621]
 script = SubResource("GDScript_enpov")
 closed_texture = SubResource("AtlasTexture_enpov")
 opened_texture = SubResource("AtlasTexture_pyuuc")
