@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://caemsfg4fng2u"]
+
+[ext_resource type="Texture2D" uid="uid://bnqeem03dhdjt" path="res://tiles/tiles/GrassTileset/Props.png" id="1_1svun"]
+
+[sub_resource type="GDScript" id="GDScript_j3j0o"]
+resource_name = "chest_blue"
+script/source = "extends Area2D
+
+@export var closed_texture: Texture2D
+@export var opened_texture: Texture2D
+
+var is_open := false
+
+
+func _ready() -> void:
+	$Sprite2D.texture = closed_texture
+	$Sprite2D.scale = Vector2(1, 1)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if is_open or not is_visible_in_tree():
+		return
+	if not event.is_action_pressed(\"interact\") or event.is_echo():
+		return
+
+	for body in get_overlapping_bodies():
+		if body.is_in_group(\"player\"):
+			if body.is_dead:
+				continue
+			is_open = true
+			$Sprite2D.texture = opened_texture
+			$Sprite2D.scale = Vector2(1, 1)
+			body.add_coin()
+			get_viewport().set_input_as_handled()
+			break
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1svun"]
+atlas = ExtResource("1_1svun")
+region = Rect2(65.00278, 1.0354097, 14.013016, 12.995308)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycbh1"]
+atlas = ExtResource("1_1svun")
+region = Rect2(64.97203, 22.87625, 14.092285, 23.095152)
+
+[sub_resource type="Gradient" id="Gradient_y6wh5"]
+offsets = PackedFloat32Array(0, 0.005181347, 0.010362694, 0.025906736, 0.041450776, 0.10880829, 0.93264246, 0.9481865, 0.9637306, 0.97409326, 0.97927463, 0.98445594, 0.9948186)
+colors = PackedColorArray(0.54805, 0.11656932, 0.08420571, 1, 0.582809, 0, 0.09271944, 1, 0.902929, 0.77428925, 0.7947546, 1, 0.40932643, 0.40932643, 0.40932643, 1, 0.023734838, 0.00062095973, 0.004298161, 1, 0, 0.32156864, 1, 1, 0.021331308, 0.0005580777, 0.003862904, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0.15775305, 0.25137562, 1, 0.1797697, 0.0004346994, 0.028965212, 1, 0.3249184, 0.00026143398, 0.05191131, 1, 0.023519136, 0.0006153165, 0.0042590993, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2tvov"]
+gradient = SubResource("Gradient_y6wh5")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7kmj"]
+size = Vector2(16, 16)
+
+[node name="ChestBlue" type="Area2D" unique_id=1047676621]
+z_as_relative = false
+script = SubResource("GDScript_j3j0o")
+closed_texture = SubResource("AtlasTexture_1svun")
+opened_texture = SubResource("AtlasTexture_ycbh1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1386945699]
+position = Vector2(0.5, 0)
+scale = Vector2(0.265625, 0.25)
+texture = SubResource("GradientTexture2D_2tvov")
+region_rect = Rect2(97.11687, 0.5299554, 14.219879, 13.9565525)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1978634448]
+shape = SubResource("RectangleShape2D_j7kmj")

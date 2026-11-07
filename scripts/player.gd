@@ -19,6 +19,7 @@ var last_direction := Vector2.DOWN
 var is_attacking := false
 var is_dead := false
 var keys := 0
+var coins := 0
 
 
 func _ready() -> void:
@@ -108,3 +109,7 @@ func _on_animation_finished() -> void:
 func add_key() -> void:
 	keys += 1
 	$GUI/HBoxContainer/KeyNumber.text = "Key x %02d" % keys
+	
+func add_coin() -> void:
+	coins += 1
+	$GUI/HBoxContainer2/CoinNumber.text = "Coin x %02d" % coins

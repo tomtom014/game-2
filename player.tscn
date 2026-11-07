@@ -427,7 +427,11 @@ height = 10.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ef02"]
 atlas = ExtResource("3_i3pqv")
-region = Rect2(97.43435, 78.90396, 11.566299, 12.722931)
+region = Rect2(97.88812, 79.44249, 11.927612, 11.152069)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfmca"]
+atlas = ExtResource("3_i3pqv")
+region = Rect2(98.00191, 47.841747, 12.195923, 12.22126)
 
 [node name="Player" type="CharacterBody2D" unique_id=826415110 groups=["player"]]
 z_index = 1
@@ -469,3 +473,18 @@ texture = SubResource("AtlasTexture_5ef02")
 [node name="KeyNumber" type="Label" parent="GUI/HBoxContainer" unique_id=822782729]
 layout_mode = 2
 text = "Key x 00"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GUI" unique_id=1422230641]
+offset_left = 20.0
+offset_top = 67.0
+offset_right = 144.0
+offset_bottom = 117.0
+
+[node name="CoinIcon" type="TextureRect" parent="GUI/HBoxContainer2" unique_id=938768146]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("AtlasTexture_pfmca")
+
+[node name="CoinNumber" type="Label" parent="GUI/HBoxContainer2" unique_id=1502089049]
+layout_mode = 2
+text = "Coin x 00"
