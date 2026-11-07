@@ -110,6 +110,13 @@ func add_key() -> void:
 	keys += 1
 	$GUI/HBoxContainer/KeyNumber.text = "Key x %02d" % keys
 	
+func try_use_key() -> bool:
+	if keys <= 0:
+		return false
+	keys -=1
+	$GUI/HBoxContainer/KeyNumber.text = "Key x %02d" % keys
+	return true
+	
 func add_coin() -> void:
 	coins += 1
 	$GUI/HBoxContainer2/CoinNumber.text = "Coin x %02d" % coins

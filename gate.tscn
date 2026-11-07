@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://dtypb6vwlmo31"]
+
+[ext_resource type="Texture2D" uid="uid://dsgdn6qyb7b8h" path="res://tiles/tiles/wall/door_spritesheet.png" id="1_15vrf"]
+
+[sub_resource type="GDScript" id="GDScript_15vrf"]
+resource_name = "gate"
+script/source = "extends StaticBody2D
+
+@export var sprite:AnimatedSprite2D
+@export var blocker:CollisionShape2D
+@export var interact:CollisionShape2D
+
+var opened:=false
+
+func _ready() -> void:
+	sprite.stop()
+	sprite.animation=&\"opening\"
+	sprite.frame=0
+
+func _unhandled_input(event: InputEvent) -> void:
+	if opened or not event.is_action_pressed(\"interact\"):
+		return
+	for body in interact.get_overlapping_bodies():
+		if not body.is_in_group(\"player\") or body.is_dead:
+			continue
+		if not body.try_use_key():
+			continue
+		opened = true
+		get_viewport().set_input_as_handled()
+		sprite.play(\"opening\")
+		await sprite.animation_finished
+		blocker.set_deferred(\"disabled\", true)
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikl61"]
+atlas = ExtResource("1_15vrf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lukw"]
+atlas = ExtResource("1_15vrf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4oabi"]
+atlas = ExtResource("1_15vrf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1g733"]
+atlas = ExtResource("1_15vrf")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhui3"]
+atlas = ExtResource("1_15vrf")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qcw8"]
+atlas = ExtResource("1_15vrf")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6ekym"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikl61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lukw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4oabi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1g733")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhui3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qcw8")
+}],
+"loop": false,
+"name": &"opening",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_15vrf"]
+size = Vector2(32, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikl61"]
+size = Vector2(36, 41)
+
+[node name="Gate" type="StaticBody2D" unique_id=2043210918 node_paths=PackedStringArray("sprite", "blocker", "interact")]
+script = SubResource("GDScript_15vrf")
+sprite = NodePath("AnimatedSprite2D")
+blocker = NodePath("Blocker")
+interact = NodePath("InteractArea/Interact")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1473132533]
+sprite_frames = SubResource("SpriteFrames_6ekym")
+animation = &"opening"
+
+[node name="Blocker" type="CollisionShape2D" parent="." unique_id=1429968231]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_15vrf")
+
+[node name="InteractArea" type="Area2D" parent="." unique_id=112966787]
+
+[node name="Interact" type="CollisionShape2D" parent="InteractArea" unique_id=1851002502]
+position = Vector2(0, 8.5)
+shape = SubResource("RectangleShape2D_ikl61")
