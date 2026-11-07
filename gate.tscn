@@ -8,7 +8,7 @@ script/source = "extends StaticBody2D
 
 @export var sprite:AnimatedSprite2D
 @export var blocker:CollisionShape2D
-@export var interact:CollisionShape2D
+@export var interact:Area2D
 
 var opened:=false
 
@@ -92,7 +92,7 @@ size = Vector2(36, 41)
 script = SubResource("GDScript_15vrf")
 sprite = NodePath("AnimatedSprite2D")
 blocker = NodePath("Blocker")
-interact = NodePath("InteractArea/Interact")
+interact = NodePath("InteractArea")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1473132533]
 sprite_frames = SubResource("SpriteFrames_6ekym")
