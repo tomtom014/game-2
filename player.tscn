@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dranw71vox1tm" path="res://assets/images/player/Player/Player.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://0fl6bgmtm0p2" path="res://scripts/player.gd" id="2_player"]
 [ext_resource type="Texture2D" uid="uid://bnqeem03dhdjt" path="res://tiles/tiles/GrassTileset/Props.png" id="3_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://xkwagvdu2obo" path="res://tiles/weapons potions pack 1.png" id="4_hqtel"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4flbx"]
 atlas = ExtResource("1_4flbx")
@@ -433,11 +434,16 @@ region = Rect2(97.88812, 79.44249, 11.927612, 11.152069)
 atlas = ExtResource("3_i3pqv")
 region = Rect2(98.00191, 47.841747, 12.195923, 12.22126)
 
-[node name="Player" type="CharacterBody2D" unique_id=826415110 groups=["player"]]
+[sub_resource type="AtlasTexture" id="AtlasTexture_76oay"]
+atlas = ExtResource("4_hqtel")
+region = Rect2(112.66336, -2.073059, 15.336639, 16.659315)
+
+[node name="Player" type="CharacterBody2D" unique_id=826415110 node_paths=PackedStringArray("hp_label") groups=["player"]]
 z_index = 1
 position = Vector2(1, 0)
 motion_mode = 1
 script = ExtResource("2_player")
+hp_label = NodePath("GUI/VBoxContainer/HBoxContainer3/HpNumber")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=255806538]
 unique_name_in_owner = true
@@ -458,33 +464,44 @@ shape = SubResource("CapsuleShape2D_4flbx")
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=872803934]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI" unique_id=872425252]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 128.0
-offset_bottom = 60.0
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI" unique_id=863851730]
+custom_minimum_size = Vector2(50, 200)
+offset_right = 50.0
+offset_bottom = 200.0
 
-[node name="KeyIcon" type="TextureRect" parent="GUI/HBoxContainer" unique_id=1134626829]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer" unique_id=872425252]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+
+[node name="KeyIcon" type="TextureRect" parent="GUI/VBoxContainer/HBoxContainer" unique_id=1134626829]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture = SubResource("AtlasTexture_5ef02")
 
-[node name="KeyNumber" type="Label" parent="GUI/HBoxContainer" unique_id=822782729]
+[node name="KeyNumber" type="Label" parent="GUI/VBoxContainer/HBoxContainer" unique_id=822782729]
 layout_mode = 2
 text = "Key x 00"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="GUI" unique_id=1422230641]
-offset_left = 20.0
-offset_top = 67.0
-offset_right = 144.0
-offset_bottom = 117.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="GUI/VBoxContainer" unique_id=1422230641]
+layout_mode = 2
 
-[node name="CoinIcon" type="TextureRect" parent="GUI/HBoxContainer2" unique_id=938768146]
+[node name="CoinIcon" type="TextureRect" parent="GUI/VBoxContainer/HBoxContainer2" unique_id=938768146]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture = SubResource("AtlasTexture_pfmca")
 
-[node name="CoinNumber" type="Label" parent="GUI/HBoxContainer2" unique_id=1502089049]
+[node name="CoinNumber" type="Label" parent="GUI/VBoxContainer/HBoxContainer2" unique_id=1502089049]
 layout_mode = 2
 text = "Coin x 00"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="GUI/VBoxContainer" unique_id=415821245]
+layout_mode = 2
+
+[node name="HpIcon" type="TextureRect" parent="GUI/VBoxContainer/HBoxContainer3" unique_id=17317937]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_76oay")
+
+[node name="HpNumber" type="Label" parent="GUI/VBoxContainer/HBoxContainer3" unique_id=372064772]
+layout_mode = 2

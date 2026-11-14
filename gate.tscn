@@ -9,8 +9,10 @@ script/source = "extends StaticBody2D
 @export var sprite:AnimatedSprite2D
 @export var blocker:CollisionShape2D
 @export var interact:Area2D
+@export var destination: Marker2D
 
 var opened:=false
+var opening := false
 
 func _ready() -> void:
 	sprite.stop()
@@ -18,18 +20,32 @@ func _ready() -> void:
 	sprite.frame=0
 
 func _unhandled_input(event: InputEvent) -> void:
-	if opened or not event.is_action_pressed(\"interact\"):
+	if opening or not event.is_action_pressed(\"interact\"):
 		return
+
 	for body in interact.get_overlapping_bodies():
 		if not body.is_in_group(\"player\") or body.is_dead:
 			continue
+
+		if opened:
+			if destination == null:
+				return
+			body.velocity = Vector2.ZERO
+			body.global_position = destination.global_position
+			get_viewport().set_input_as_handled()
+			return
+
 		if not body.try_use_key():
 			continue
-		opened = true
+
+		opening = true
 		get_viewport().set_input_as_handled()
 		sprite.play(\"opening\")
 		await sprite.animation_finished
 		blocker.set_deferred(\"disabled\", true)
+		opening = false
+		opened = true
+		return
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ikl61"]

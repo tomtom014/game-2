@@ -13,6 +13,8 @@ extends CharacterBody2D
 @export var anim_attack_up := "attack_up"
 @export var anim_attack_down := "attack_down"
 @export var anim_die := "die"
+@export_range(1, 100, 1) var max_hp: int = 3
+@export var hp_label: Label
 
 var character_direction := Vector2.ZERO
 var last_direction := Vector2.DOWN
@@ -20,6 +22,7 @@ var is_attacking := false
 var is_dead := false
 var keys := 0
 var coins := 0
+var hp: int
 
 
 func _ready() -> void:
@@ -28,7 +31,9 @@ func _ready() -> void:
 	if sprite and not sprite.animation_finished.is_connected(_on_animation_finished):
 		sprite.animation_finished.connect(_on_animation_finished)
 		
-	$GUI/HBoxContainer/KeyNumber.text = "Key x %02d" % keys
+	$GUI/VBoxContainer/HBoxContainer/KeyNumber.text = "Key x %02d" % keys
+	hp = max_hp
+	update_hp_display()
 
 func _attack_enemy() -> void:
 	for direction in [Vector2.UP,Vector2.DOWN,Vector2.RIGHT,Vector2.LEFT]:
@@ -108,15 +113,28 @@ func _on_animation_finished() -> void:
 
 func add_key() -> void:
 	keys += 1
-	$GUI/HBoxContainer/KeyNumber.text = "Key x %02d" % keys
+	$GUI/VBoxContainer/HBoxContainer/KeyNumber.text = "Key x %02d" % keys
 	
 func try_use_key() -> bool:
 	if keys <= 0:
 		return false
 	keys -=1
-	$GUI/HBoxContainer/KeyNumber.text = "Key x %02d" % keys
+	$GUI/VBoxContainer/HBoxContainer/KeyNumber.text = "Key x %02d" % keys
 	return true
 	
 func add_coin() -> void:
 	coins += 1
-	$GUI/HBoxContainer2/CoinNumber.text = "Coin x %02d" % coins
+	$GUI/VBoxContainer/HBoxContainer2/CoinNumber.text = "Coin x %02d" % coins
+
+func take_damage(amount: int) -> void:
+	if is_dead or amount <= 0:
+		return
+
+	hp = maxi(hp - amount, 0)
+	update_hp_display()
+	if hp == 0:
+		die()
+
+func update_hp_display() -> void:
+	if hp_label != null:
+		hp_label.text = "HP %d / %d" % [hp, max_hp]
