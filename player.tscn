@@ -503,5 +503,5 @@ layout_mode = 2
 size_flags_horizontal = 0
 texture = SubResource("AtlasTexture_76oay")
 
-[node name="HpNumber" type="Label" parent="GUI/VBoxContainer/HBoxContainer3" unique_id=372064772]
+[node name="HpNumber" type="Label" parent="GUI/VBoxContainer/HBoxContainer3" unique_id=372064772 groups=["player"]]
 layout_mode = 2
